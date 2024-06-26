@@ -4,7 +4,7 @@ from pathlib import PurePath
 
 class Pather:
     """
-    class AnalyzeEditingInputFilePather(AnalyzeEditingFilesPather):
+    class InputFilePather(Pather):
         @staticmethod
         def get_constructor_kwargs(instance):
             return {'instance': instance}
@@ -21,7 +21,7 @@ class Pather:
         def input_file(self, instance, filename):
             return self.input_dir() / PurePath(filename)
 
-    @AnalyzeEditingInputFilePather.upload_to('input_file')
+    @InputFilePather.upload_to('input_file')
     def location_input():
         pass
 
