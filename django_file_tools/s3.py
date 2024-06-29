@@ -46,6 +46,7 @@ def bucket_exists(bucket_name):
     except ClientError:
         return False
 
+
 def assert_dir_exists(path):
     try:
         os.makedirs(path)
