@@ -145,6 +145,7 @@ else:
 
 AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
 DEFAULT_FILE_STORAGE = 'django_file_tools.storage_backends.S3Storage'
 
 TEST_RUNNER = 'django_file_tools.runner.Runner'

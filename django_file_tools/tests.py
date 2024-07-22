@@ -11,7 +11,10 @@ class StorageTestCaseMixin:
         try:
             client.head_bucket(Bucket=settings.AWS_STORAGE_BUCKET_NAME)
         except ClientError:
-            client.create_bucket(Bucket=settings.AWS_STORAGE_BUCKET_NAME)
+            client.create_bucket(
+                Bucket=settings.AWS_STORAGE_BUCKET_NAME,
+                CreateBucketConfiguration={'LocationConstraint': settings.AWS_S3_REGION_NAME}
+            )
         else:
             reset_bucket(settings.AWS_STORAGE_BUCKET_NAME)
 
