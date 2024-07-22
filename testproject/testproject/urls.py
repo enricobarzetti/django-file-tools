@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django_file_tools.views import get_s3_signature
 
 from testapp.views import SomethingUpdateView
 from testapp.views import SomethingCreateView
@@ -23,4 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('update/<int:pk>/', SomethingUpdateView.as_view(), name='update'),
     path('create/', SomethingCreateView.as_view(), name='create'),
+    path('s3_signature', get_s3_signature),
 ]
