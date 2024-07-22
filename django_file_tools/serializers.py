@@ -3,7 +3,7 @@ import copy
 from django.db import models
 from rest_framework import serializers
 
-from . import serializer_fields
+from django_file_tools import serializer_fields
 
 
 class ModelSerializer(serializers.ModelSerializer):
