@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-file-tools"
-version = "0.1.5"
+version = "0.1.6"
 description = "Tools for working with files in Django"
 authors = ["Enrico Barzetti"]
 readme = "README.md"
