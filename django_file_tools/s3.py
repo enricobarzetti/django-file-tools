@@ -8,7 +8,8 @@ import boto3
 from botocore.exceptions import ClientError
 from django.conf import settings
 
-from django_file_tools.constants import TEMP_MARKER
+from django_file_tools.conf import app_settings
+
 
 RETENTION = 'retention'
 EXPIRE_FAST = 'expire_fast'
@@ -228,7 +229,7 @@ def s3_temp_folder_cleanup():
         return directories.keys()
 
     delete_set = dict(Objects=[])
-    for prefix in dir(bucket_name=settings.AWS_STORAGE_BUCKET_NAME, prefix=TEMP_MARKER):
+    for prefix in dir(bucket_name=settings.AWS_STORAGE_BUCKET_NAME, prefix=app_settings.FILE_TOOLS_TEMP_FOLDER_PREFIX):
         response = client.list_objects(Bucket=settings.AWS_STORAGE_BUCKET_NAME, Prefix=prefix, MaxKeys=1)
         for entry in response.get('Contents', ()):
             diff_in_hours = (date.today() - entry['LastModified']).total_seconds() / 3600

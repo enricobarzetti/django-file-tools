@@ -6,7 +6,6 @@ from django.http.response import Http404
 from django.http.response import JsonResponse
 
 from django_file_tools.conf import app_settings
-from django_file_tools.model_fields import TEMP_MARKER
 from django_file_tools.s3 import EXPIRE_FAST
 from django_file_tools.s3 import RETENTION
 from django_file_tools.s3 import client
@@ -36,7 +35,7 @@ def create_presigned_post(bucket, key, tags=None, expiration=3600):
         {'tagging': get_tag_xml(tags)},
         {'success_action_status': '201'},
         {'bucket': bucket},
-        ['starts-with', '$key', TEMP_MARKER],
+        ['starts-with', '$key', app_settings.FILE_TOOLS_TEMP_FOLDER_PREFIX],
     ]
 
     fields = {

@@ -2,7 +2,7 @@ from pathlib import PurePath
 
 from django.db.models.fields import files
 
-from django_file_tools.constants import TEMP_MARKER
+from django_file_tools.conf import app_settings
 from django_file_tools.s3 import get_file_without_prefix
 
 
@@ -59,7 +59,7 @@ def copy_from_temp_storage(instance, tags=None):
         if isinstance(field, FileField):
             file = getattr(instance, field.name)
             if file.name != '':
-                if PurePath(file.name).parts[0].startswith(TEMP_MARKER):
+                if PurePath(file.name).parts[0].startswith(app_settings.FILE_TOOLS_TEMP_FOLDER_PREFIX):
                     file.replace(save=False, tags=tags)
                     save = True
     if save:
