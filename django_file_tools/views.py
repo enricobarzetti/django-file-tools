@@ -61,7 +61,11 @@ def get_s3_signature(request):
     if name is None:
         raise Http404
 
-    presigned = create_presigned_post(settings.AWS_STORAGE_BUCKET_NAME, name, {RETENTION: EXPIRE_FAST})
+    presigned = create_presigned_post(
+        bucket=settings.AWS_STORAGE_BUCKET_NAME,
+        key=name,
+        tags={RETENTION: EXPIRE_FAST}
+    )
 
     return JsonResponse({
         'signature': presigned['fields'],
@@ -76,7 +80,11 @@ def get_s3_signature_temp(request):
         raise Http404
 
     path = f'{app_settings.FILE_TOOLS_TEMP_FOLDER_PREFIX}-{uuid.uuid4()}/{name}'
-    presigned = create_presigned_post(settings.AWS_STORAGE_BUCKET_NAME, path, {RETENTION: EXPIRE_FAST})
+    presigned = create_presigned_post(
+        bucket=settings.AWS_STORAGE_BUCKET_NAME,
+        key=path,
+        tags={RETENTION: EXPIRE_FAST}
+    )
 
     return JsonResponse({
         'signature': presigned['fields'],
