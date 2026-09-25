@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-file-tools"
-version = "0.1.7"
+version = "0.1.8"
 description = "Tools for working with files in Django"
 authors = ["Enrico Barzetti"]
 readme = "README.md"
@@ -11,16 +11,16 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.9"
 django = ">=3.0"
-django-storages = "^1.14.6"
-djangorestframework = "^3.12.0"
-boto3 = "^1.34.12"
-django-environ = "^0.12.0"
+django-storages = ">=1.14.6"
+djangorestframework = ">=3.12.0"
+boto3 = ">=1.34.12"
 
 [tool.poetry.group.dev.dependencies]
 isort = "^5.13.2"
 ipython = "^8.18.0"
+django-environ = ">=0.11"
 
 [build-system]
 requires = ["poetry-core"]
